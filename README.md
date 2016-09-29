@@ -26,12 +26,12 @@ public class MyMap implements PathFinderMap {
 	}
     
 	@Override
-	boolean getWidth(){
+	public int getWidth(){
 		return width;
 	}
     
 	@Override
-	boolean getHeight(){
+	public int getHeight(){
 		return height;
 	}
 }
@@ -46,5 +46,5 @@ PathNodePosition endPos = new PathNodePosition(8,6);
 AStarParams params = new AStarParams(map, startPos, endPos);
 params.setMoveType(AStarParams.MoveType.ORTHOGONAL_ONLY).setHeuristic(AStarParams.Heuristic.MANHATTAN_DISTANCE);
 
-LinkedList<PathNodePosition> path = AStar.getPath(params);
+LinkedList<PathNodePosition> path = AStar.findPath(params);
 ```
