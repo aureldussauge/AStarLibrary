@@ -1,5 +1,5 @@
-AStarLibrary: AStar implementation in Java
-==========================================
+AStarLibrary : AStar implementation in Java
+===========================================
 
 Getting started
 ---------------
