@@ -8,10 +8,6 @@ import com.mursaat.pathfinding.AStarParams.*;
  * This class represent a Node used in {@link AStar#findPath}
  */
 class PathNode implements Comparable<PathNode> {
-    /**
-     * The square root of 2, used in {@link PathNode#getNeighbors}
-     */
-    static final float SQRT_2 = 1.41421356237f;
 
     /**
      * The position of the node
@@ -69,34 +65,4 @@ class PathNode implements Comparable<PathNode> {
         return -1;
     }
 
-    /**
-     * Creates and returns a list which contains all the accessible neighbors of this node
-     * @param map The map which describe which positions are accessible
-     * @return The list of neighbors nodes
-     */
-    List<PathNode> getNeighbors(PathFinderMap map, MoveType moveType) {
-        ArrayList<PathNode> neighbors = new ArrayList<>();
-
-        if (pos.x != 0 && map.isTraversable(pos.x - 1, pos.y))
-            neighbors.add(new PathNode(new PathNodePosition(pos.x - 1, pos.y), cost + 1, 0));
-        if (pos.x != map.getWidth() - 1 && map.isTraversable(pos.x + 1, pos.y))
-            neighbors.add(new PathNode(new PathNodePosition(pos.x + 1, pos.y), cost + 1, 0));
-        if (pos.y != 0 && map.isTraversable(pos.x, pos.y - 1))
-            neighbors.add(new PathNode(new PathNodePosition(pos.x, pos.y - 1), cost + 1, 0));
-        if (pos.y != map.getHeight() - 1 && map.isTraversable(pos.x, pos.y + 1))
-            neighbors.add(new PathNode(new PathNodePosition(pos.x, pos.y + 1), cost + 1, 0));
-
-        if(moveType== MoveType.ORTHOGONAL_DIAGONAL) {
-            if (pos.x != 0 && pos.y != 0 && map.isTraversable(pos.x - 1, pos.y - 1))
-                neighbors.add(new PathNode(new PathNodePosition(pos.x - 1, pos.y - 1), cost + SQRT_2, 0));
-            if (pos.x != 0 && pos.y != map.getHeight() - 1 && map.isTraversable(pos.x - 1, pos.y + 1))
-                neighbors.add(new PathNode(new PathNodePosition(pos.x - 1, pos.y + 1), cost + SQRT_2, 0));
-            if (pos.x != map.getWidth() - 1 && pos.y != 0 && map.isTraversable(pos.x + 1, pos.y - 1))
-                neighbors.add(new PathNode(new PathNodePosition(pos.x + 1, pos.y - 1), cost + SQRT_2, 0));
-            if (pos.x != map.getWidth() - 1 && pos.y != map.getHeight() - 1 && map.isTraversable(pos.x + 1, pos.y + 1))
-                neighbors.add(new PathNode(new PathNodePosition(pos.x + 1, pos.y + 1), cost + SQRT_2, 0));
-        }
-
-        return neighbors;
-    }
 }

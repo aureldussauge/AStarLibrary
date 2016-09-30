@@ -29,7 +29,6 @@ public class PathNodePosition {
 
         if (x != that.x) return false;
         return y == that.y;
-
     }
 
     @Override
