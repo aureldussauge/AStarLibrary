@@ -1,6 +1,33 @@
 AStarLibrary : AStar implementation in Java
 ===========================================
 
+This library allows to estimate shortest path on a grid, by using the A\* algorithm.
+
+Latest release
+---------------
+
+The most recent release is 1.0, released October 1, 2016
+
+You can get the .jar here : https://github.com/Mursaat/AStarLibrary/releases/tag/1.0
+
+To add a dependency using Gradle:
+Add it in your root build.gradle at the end of repositories:
+```
+allprojects {
+	repositories {
+		...
+		maven { url "https://jitpack.io" }
+	}
+}
+```
+
+Add the dependency
+```
+dependencies {
+	compile 'com.github.Mursaat:AStarLibrary:1.0'
+}
+```
+
 Getting started
 ---------------
 
