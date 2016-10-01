@@ -44,7 +44,7 @@ MyMap map = new MyMap(26,11);
 PathNodePosition startPos = new PathNodePosition(1,3);
 PathNodePosition endPos = new PathNodePosition(8,6);
 AStarParams params = new AStarParams(map, startPos, endPos);
-params.setMoveType(AStarParams.MoveType.ORTHOGONAL_ONLY).setHeuristic(AStarParams.Heuristic.MANHATTAN_DISTANCE);
+params.setMoveType(AStarParams.MoveType.ORTHOGONAL_ONLY).setHeuristic(DistanceCalculator.MANHATTAN_DISTANCE);
 
 LinkedList<PathNodePosition> path = AStar.findPath(params);
 ```
