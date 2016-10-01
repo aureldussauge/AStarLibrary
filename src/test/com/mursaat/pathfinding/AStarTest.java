@@ -149,7 +149,7 @@ public class AStarTest {
 
         // 2 - Use diagonal movements
         params1.setMap(map2);
-        params1.setMoveType(NeighborsEnumerator.ORTHO_DIAG_NEIGHBORS);
+        params1.setNeighborsEnumerator(NeighborsEnumerator.ORTHO_DIAG_NEIGHBORS);
         params1.setStartPos(new PathNodePosition(0, 0));
         params1.setEndPos(new PathNodePosition(2, 2));
         positions = AStar.findPath(params1);
@@ -181,7 +181,7 @@ public class AStarTest {
 
         // 5 Use soft diagonal movements
         params1.setMap(map3);
-        params1.setMoveType(NeighborsEnumerator.ORTHO_DIAG_SOFT_NEIGHBORS);
+        params1.setNeighborsEnumerator(NeighborsEnumerator.ORTHO_DIAG_SOFT_NEIGHBORS);
         params1.setStartPos(new PathNodePosition(0, 0));
         params1.setEndPos(new PathNodePosition(7, 4));
         positions = AStar.findPath(params1);

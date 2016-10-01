@@ -44,7 +44,7 @@ public final class AStar {
                 return path;
             }
 
-            for (PathNode v : params.getMoveType().enumerateNeighbors(params.getMap(), u)) {
+            for (PathNode v : params.getNeighborsEnumerator().enumerateNeighbors(params.getMap(), u)) {
                 boolean mustAdd = true;
                 for (PathNode closed : closedList) {
                     if (v.equals(closed) && closed.cost < v.cost) {
