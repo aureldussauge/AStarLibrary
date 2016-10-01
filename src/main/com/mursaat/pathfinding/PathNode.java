@@ -18,14 +18,14 @@ class PathNode implements Comparable<PathNode> {
     /**
      * The cost to come on that node
      */
-    float cost;
+    double cost;
 
     /**
      * The cost to come on that node + The estimated cost to go to the end position
      */
-    float heuristic;
+    double heuristic;
 
-    PathNode(PathNodePosition pos, float cost, float heuristic) {
+    PathNode(PathNodePosition pos, double cost, double heuristic) {
         this.pos = pos;
         this.cost = cost;
         this.heuristic = heuristic;

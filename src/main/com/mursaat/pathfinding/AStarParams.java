@@ -28,14 +28,14 @@ public class AStarParams {
     /**
      * The function used when estimating distance between a position and the end position
      */
-    Heuristic heuristic;
+    DistanceCalculator heuristic;
 
     public AStarParams(PathFinderMap map, PathNodePosition startPos, PathNodePosition endPos) {
         this.map = map;
         this.startPos = startPos;
         this.endPos = endPos;
         this.moveType = MoveType.ORTHOGONAL_ONLY;
-        this.heuristic = Heuristic.MANHATTAN_DISTANCE;
+        this.heuristic = DistanceCalculator.MANHATTAN_DISTANCE;
     }
 
     /**
@@ -51,28 +51,6 @@ public class AStarParams {
          * Represents the movements ↑ ↓ ← → ↖ ↗ ↙ ↘
          */
         ORTHOGONAL_DIAGONAL
-    }
-
-    /**
-     * Defines a function used to estimate the distance from a position to the end position (used by {@link AStar#findPath})
-     */
-    public enum Heuristic {
-        /**
-         * Fast, but this is not accurate when using {@link MoveType#ORTHOGONAL_DIAGONAL}
-         */
-        MANHATTAN_DISTANCE,
-
-        /**
-         * Fast, but this is not accurate when using {@link MoveType#ORTHOGONAL_DIAGONAL}
-         */
-        CHEBYSHEV_DISTANCE,
-
-        /**
-         * Slower, but this is the true distance if you're using {@link MoveType#ORTHOGONAL_DIAGONAL}
-         */
-        EUCLIDIAN_DISTANCE,
-
-
     }
 
     public PathFinderMap getMap() {
@@ -111,11 +89,11 @@ public class AStarParams {
         return this;
     }
 
-    public Heuristic getHeuristic() {
+    public DistanceCalculator getHeuristic() {
         return heuristic;
     }
 
-    public AStarParams setHeuristic(Heuristic heuristic) {
+    public AStarParams setHeuristic(DistanceCalculator heuristic) {
         this.heuristic = heuristic;
         return this;
     }

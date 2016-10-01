@@ -57,17 +57,7 @@ public final class AStar {
                     }
                 }
                 if (mustAdd) {
-                    switch (params.heuristic){
-                        case MANHATTAN_DISTANCE:
-                            v.heuristic = v.cost + PathDistances.manhattanDistance(v.pos, params.getEndPos());
-                            break;
-                        case CHEBYSHEV_DISTANCE:
-                            v.heuristic = v.cost + PathDistances.chebyshevDistance(v.pos, params.getEndPos());
-                            break;
-                        default:
-                            v.heuristic = v.cost + PathDistances.euclidianDistance(v.pos, params.getEndPos());
-                    }
-
+                    v.heuristic = v.cost + params.heuristic.calculate(v.pos, params.getEndPos());
                     v.parent = u;
                     openList.insertSorted(v);
                 }
@@ -101,7 +91,7 @@ public final class AStar {
     /**
      * The square root of 2, used in {@link AStar#getNeighbors}
      */
-    static final float SQRT_2 = 1.41421356237f;
+    static final double SQRT_2 = 1.41421356237d;
 
     /**
      * Creates and returns a list which contains all the accessible neighbors of this node
