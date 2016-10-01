@@ -71,6 +71,8 @@ public class AStarParams {
          * Slower, but this is the true distance if you're using {@link MoveType#ORTHOGONAL_DIAGONAL}
          */
         EUCLIDIAN_DISTANCE,
+
+
     }
 
     public PathFinderMap getMap() {

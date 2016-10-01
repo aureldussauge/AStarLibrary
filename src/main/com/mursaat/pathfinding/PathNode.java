@@ -1,9 +1,5 @@
 package com.mursaat.pathfinding;
 
-import java.util.ArrayList;
-import java.util.List;
-import com.mursaat.pathfinding.AStarParams.*;
-
 /**
  * This class represent a Node used in {@link AStar#findPath}
  */

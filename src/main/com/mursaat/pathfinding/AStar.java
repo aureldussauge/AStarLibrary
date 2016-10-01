@@ -13,11 +13,18 @@ public final class AStar {
 
     /**
      * Use A* algorithm to compute the shortest path between two positions
+     * If the end position is unreachable, it will returns an empty List
+     * If the start position is not defined as traversable on the map, it will returns an empty List
      *
      * @param params The parameters used to compute the path
      * @return A LinkedList containing all positions in the shortest path
      */
     public static LinkedList<PathNodePosition> findPath(AStarParams params) {
+        // If the start position is not traversable, we return an empty list
+        if (!params.getMap().isTraversable(params.getStartPos().x, params.getStartPos().y)) {
+            return new LinkedList<>();
+        }
+
         PathNode startNode = new PathNode(params.getStartPos(), 0, 0);
         LinkedList<PathNode> closedList = new LinkedList<>();
         SortedArrayList<PathNode> openList = new SortedArrayList<>();
@@ -52,13 +59,13 @@ public final class AStar {
                 if (mustAdd) {
                     switch (params.heuristic){
                         case MANHATTAN_DISTANCE:
-                            v.heuristic = v.cost + manhattanDistance(v.pos, params.getEndPos());
+                            v.heuristic = v.cost + PathDistances.manhattanDistance(v.pos, params.getEndPos());
                             break;
                         case CHEBYSHEV_DISTANCE:
-                            v.heuristic = v.cost + chebyshevDistance(v.pos, params.getEndPos());
+                            v.heuristic = v.cost + PathDistances.chebyshevDistance(v.pos, params.getEndPos());
                             break;
                         default:
-                            v.heuristic = v.cost + euclidianDistance(v.pos, params.getEndPos());
+                            v.heuristic = v.cost + PathDistances.euclidianDistance(v.pos, params.getEndPos());
                     }
 
                     v.parent = u;
@@ -71,38 +78,7 @@ public final class AStar {
         return new LinkedList<>();
     }
 
-    /**
-     * Computes and returns Manhattan Distance
-     *
-     * @param t1 First position
-     * @param t2 Second position
-     * @return
-     */
-    private static int manhattanDistance(PathNodePosition t1, PathNodePosition t2) {
-        return Math.abs(t2.x - t1.x) + Math.abs(t2.y - t1.y);
-    }
 
-    /**
-     * Computes and returns Chebyshev Distance
-     *
-     * @param t1 First position
-     * @param t2 Second position
-     * @return
-     */
-    private static int chebyshevDistance(PathNodePosition t1, PathNodePosition t2) {
-        return Math.max(Math.abs(t2.x - t1.x), Math.abs(t2.y - t1.y));
-    }
-
-    /**
-     * Computes and returns Euclidian Distance
-     *
-     * @param t1 First position
-     * @param t2 Second position
-     * @return
-     */
-    private static float euclidianDistance(PathNodePosition t1, PathNodePosition t2) {
-        return (float)Math.floor(Math.pow(t2.x - t1.x, 2)+ Math.pow(t2.y - t1.y, 2));
-    }
 
     /**
      * This list extends ArrayList
