@@ -15,6 +15,7 @@ public class AStarTest {
 
     private PathFinderMap map1;
     private PathFinderMap map2;
+    private PathFinderMap map3;
 
     /**
      * Create all the objects used by the tests
@@ -79,6 +80,35 @@ public class AStarTest {
                 return grid.length;
             }
         };
+
+        map3 = new PathFinderMap() {
+
+            final int WALL = 1;
+            final int FLOOR = 0;
+
+            int[][] grid = new int[][]{
+                    {FLOOR, FLOOR, WALL, WALL, WALL, WALL, WALL, WALL},
+                    {WALL, FLOOR, FLOOR, FLOOR, FLOOR, FLOOR, FLOOR, WALL},
+                    {FLOOR, WALL, WALL, WALL, FLOOR, FLOOR, FLOOR, FLOOR},
+                    {FLOOR, WALL, WALL, WALL, FLOOR, FLOOR, FLOOR, FLOOR},
+                    {FLOOR, FLOOR, WALL, WALL, FLOOR, FLOOR, FLOOR, FLOOR},
+            };
+
+            @Override
+            public boolean isTraversable(int x, int y) {
+                return grid[y][x] == FLOOR;
+            }
+
+            @Override
+            public int getWidth() {
+                return grid[0].length;
+            }
+
+            @Override
+            public int getHeight() {
+                return grid.length;
+            }
+        };
     }
 
     /**
@@ -90,6 +120,7 @@ public class AStarTest {
     public void tearDown() throws Exception {
         map1 = null;
         map2 = null;
+        map3 = null;
     }
 
     /**
@@ -118,7 +149,7 @@ public class AStarTest {
 
         // 2 - Use diagonal movements
         params1.setMap(map2);
-        params1.setMoveType(AStarParams.MoveType.ORTHOGONAL_DIAGONAL);
+        params1.setMoveType(NeighborsEnumerator.ORTHO_DIAG_NEIGHBORS);
         params1.setStartPos(new PathNodePosition(0, 0));
         params1.setEndPos(new PathNodePosition(2, 2));
         positions = AStar.findPath(params1);
@@ -147,6 +178,25 @@ public class AStarTest {
         expectedPositions.clear();
 
         assertEquals("findPath() must returns empty array when a not traversable start position is given", expectedPositions, positions);
+
+        // 5 Use soft diagonal movements
+        params1.setMap(map3);
+        params1.setMoveType(NeighborsEnumerator.ORTHO_DIAG_SOFT_NEIGHBORS);
+        params1.setStartPos(new PathNodePosition(0, 0));
+        params1.setEndPos(new PathNodePosition(7, 4));
+        positions = AStar.findPath(params1);
+
+        expectedPositions.clear();
+        expectedPositions.add(new PathNodePosition(1, 0));
+        expectedPositions.add(new PathNodePosition(1, 1));
+        expectedPositions.add(new PathNodePosition(2, 1));
+        expectedPositions.add(new PathNodePosition(3, 1));
+        expectedPositions.add(new PathNodePosition(4, 1));
+        expectedPositions.add(new PathNodePosition(5, 2));
+        expectedPositions.add(new PathNodePosition(6, 3));
+        expectedPositions.add(new PathNodePosition(7, 4));
+
+        assertEquals("The path returned by findPath() is not the one expected (Soft diagonal movements allowed)", expectedPositions, positions);
     }
 
 }

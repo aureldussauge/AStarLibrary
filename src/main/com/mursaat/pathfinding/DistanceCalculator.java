@@ -27,7 +27,7 @@ public abstract class DistanceCalculator {
         return calculate(pos1.x, pos1.y, pos2.x, pos2.y);
     }
 
-    private DistanceCalculator() {
+    public DistanceCalculator() {
 
     }
 

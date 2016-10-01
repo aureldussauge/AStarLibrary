@@ -23,7 +23,7 @@ public class AStarParams {
     /**
      * The movements allowed
      */
-    private MoveType moveType;
+    private NeighborsEnumerator moveType;
 
     /**
      * The function used when estimating distance between a position and the end position
@@ -34,24 +34,10 @@ public class AStarParams {
         this.map = map;
         this.startPos = startPos;
         this.endPos = endPos;
-        this.moveType = MoveType.ORTHOGONAL_ONLY;
+        this.moveType = NeighborsEnumerator.ORTHO_NEIGHBORS;
         this.heuristic = DistanceCalculator.MANHATTAN_DISTANCE;
     }
 
-    /**
-     * Defines a group of movements (used by {@link AStar#findPath})
-     */
-    public enum MoveType {
-        /**
-         * Represents the movements ↑ ↓ ← →
-         */
-        ORTHOGONAL_ONLY,
-
-        /**
-         * Represents the movements ↑ ↓ ← → ↖ ↗ ↙ ↘
-         */
-        ORTHOGONAL_DIAGONAL
-    }
 
     public PathFinderMap getMap() {
         return map;
@@ -80,11 +66,11 @@ public class AStarParams {
         return this;
     }
 
-    public MoveType getMoveType() {
+    public NeighborsEnumerator getMoveType() {
         return moveType;
     }
 
-    public AStarParams setMoveType(MoveType moveType) {
+    public AStarParams setMoveType(NeighborsEnumerator moveType) {
         this.moveType = moveType;
         return this;
     }
