@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 group 'com.mursaat.astarlibrary'
-version '1.0'
+version 'v0.0.1'
 
 repositories {
     mavenCentral()
