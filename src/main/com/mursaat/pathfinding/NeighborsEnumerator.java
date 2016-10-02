@@ -46,7 +46,7 @@ public abstract class NeighborsEnumerator {
     /**
      * The square root of 2, used in {@link NeighborsEnumerator#ORTHO_DIAG_NEIGHBORS}
      */
-    static final double SQRT_2 = 1.41421356237d;
+    private static final double SQRT_2 = 1.41421356237d;
 
     /**
      * Returns the neighbors in these directions : ↑ ↓ ← → ↖ ↗ ↙ ↘
