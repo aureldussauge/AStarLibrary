@@ -11,6 +11,10 @@ public final class AStar {
     private AStar() {
     }
 
+    public static void main(String[] args){
+
+    }
+
     /**
      * Use A* algorithm to compute the shortest path between two positions
      * If the end position is unreachable, it will returns an empty List
