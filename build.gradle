@@ -11,3 +11,13 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
+
+task AStarLibrary(type: Jar) {
+    sourceCompatibility = 1.8
+    baseName = "AStarLibrary"
+    with jar
+}
+
+artifacts {
+    archives AStarLibrary
+}
