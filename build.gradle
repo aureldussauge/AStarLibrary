@@ -2,7 +2,9 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 group 'com.mursaat.astarlibrary'
-version 'v0.0.1'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -31,19 +33,4 @@ task AStarLibrary(type: Jar) {
 artifacts {
     archives sourcesJar
     archives javadocJar
-}
-
-// To specify a license in the pom:
-install {
-    repositories.mavenInstaller {
-        pom.project {
-            licenses {
-                license {
-                    name 'The Apache Software License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    distribution 'repo'
-                }
-            }
-        }
-    }
 }
