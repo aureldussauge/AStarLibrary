@@ -22,7 +22,7 @@ public abstract class NeighborsEnumerator {
     }
 
     /**
-     * Returns the neighbors in these directions : ↑ ↓ ← →
+     * Returns the neighbors in these directions : NORTH, SOUTH, EAST, WEST
      */
     public static final NeighborsEnumerator ORTHO_NEIGHBORS = new NeighborsEnumerator() {
         @Override
@@ -49,7 +49,7 @@ public abstract class NeighborsEnumerator {
     private static final double SQRT_2 = 1.41421356237d;
 
     /**
-     * Returns the neighbors in these directions : ↑ ↓ ← → ↖ ↗ ↙ ↘
+     * Returns the neighbors in these directions : N, S, E, W, NE, NO, SE, SO
      */
     public static final NeighborsEnumerator ORTHO_DIAG_NEIGHBORS = new NeighborsEnumerator() {
         @Override
@@ -80,7 +80,7 @@ public abstract class NeighborsEnumerator {
     };
 
     /**
-     * Returns the neighbors in these directions : ↑ ↓ ← → ↖ ↗ ↙ ↘
+     * Returns the neighbors in these directions : N, S, E, W, NE, NO, SE, SO
      * The difference with ORTHOGONAL_DIAGONAL_NEIGHBORS is that this won't allows to pass through walls in diagonal
      */
     public static final NeighborsEnumerator ORTHO_DIAG_SOFT_NEIGHBORS = new NeighborsEnumerator() {

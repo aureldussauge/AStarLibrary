@@ -53,7 +53,7 @@ public abstract class DistanceCalculator {
 
 
     /**
-     * Allows to calculate the @see <a href="https://en.wikipedia.org/wiki/Euclidean_distance>Euclidean distance</a>
+     * Allows to calculate the @see <a href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a>
      */
     public static final DistanceCalculator EUCLIDEAN_DISTANCE = new DistanceCalculator() {
         @Override
