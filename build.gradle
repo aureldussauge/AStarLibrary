@@ -24,12 +24,6 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
-task AStarLibrary(type: Jar) {
-    sourceCompatibility = 1.8
-    baseName = "AStarLibrary"
-    with jar
-}
-
 artifacts {
     archives sourcesJar
     archives javadocJar
