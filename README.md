@@ -6,9 +6,20 @@ This library allows to estimate shortest path on a grid, by using the A\* algori
 Latest release
 ---------------
 
-The most recent release is v0.0.1, released October 2, 2016
+The most recent release is v0.1, released October 3, 2016
 
-You can get the .jar here : https://github.com/Mursaat/AStarLibrary/releases/tag/v0.0.1
+You can get the .jar here : https://github.com/Mursaat/AStarLibrary/releases/tag/v0.1
+
+To add a dependency using Gradle:
+```
+repositories {
+	jcenter()
+	maven { url "https://jitpack.io" }
+}
+dependencies {
+	compile 'com.github.mursaat:astarlibrary:v0.1'
+}
+```
 
 Getting started
 ---------------
