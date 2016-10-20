@@ -6,15 +6,16 @@ package com.mursaat.pathfinding;
  */
 public interface PathFinderMap {
 
-    /**
-     * Returns a boolean which tells if we can walk at the given position.
-     *
-     * @param x The x position
-     * @param y The y position
-     * @return The boolean which tell if the position is traversable
-     */
-    boolean isTraversable(int x, int y);
+  /**
+   * Returns a boolean which tells if we can walk at the given position.
+   *
+   * @param x The x position
+   * @param y The y position
+   * @return The boolean which tell if the position is traversable
+   */
+  boolean isTraversable(int x, int y);
 
-    int getWidth();
-    int getHeight();
+  int getWidth();
+
+  int getHeight();
 }
