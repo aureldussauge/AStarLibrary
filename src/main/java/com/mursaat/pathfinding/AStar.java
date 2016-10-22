@@ -25,6 +25,10 @@ public final class AStar {
       return new LinkedList<>();
     }
 
+    if (params.mustCheckPosSameArea() && !arePosInSameArea(params.getMap(), params.getStartPos(), params.getEndPos())) {
+      return new LinkedList<>();
+    }
+
     PathNode startNode = new PathNode(params.getStartPos(), 0, 0);
     HashMap<PathNode, PathNode> closedMap = new HashMap<>();
     HashMap<PathNode, PathNode> openMap = new HashMap<>();
@@ -71,5 +75,48 @@ public final class AStar {
       closedMap.put(u, u);
     }
     return new LinkedList<>();
+  }
+
+  /**
+   * Allow to detect if two positions belongs to the same area
+   *
+   * @param map
+   * @param p1
+   * @param p2
+   * @return
+   */
+  private static boolean arePosInSameArea(PathFinderMap map, PathNodePosition p1, PathNodePosition p2) {
+    boolean[][] colored = new boolean[map.getHeight()][map.getWidth()];
+
+    Stack<PathNodePosition> positions = new Stack<>();
+    positions.add(p1);
+    while (!positions.isEmpty()) {
+      PathNodePosition currPos = positions.pop();
+
+      if (colored[currPos.y][currPos.x]) continue;
+
+      if (currPos.x == p2.x && currPos.y == p2.y) return true;
+
+      colored[currPos.y][currPos.x] = true;
+
+      if (currPos.x + 1 != map.getWidth() && map.isTraversable(currPos.x + 1, currPos.y))
+        positions.add(new PathNodePosition(currPos.x + 1, currPos.y));
+      if (currPos.x != 0 && map.isTraversable(currPos.x - 1, currPos.y))
+        positions.add(new PathNodePosition(currPos.x - 1, currPos.y));
+      if (currPos.y + 1 != map.getHeight() && map.isTraversable(currPos.x, currPos.y + 1))
+        positions.add(new PathNodePosition(currPos.x, currPos.y + 1));
+      if (currPos.y != 0 && map.isTraversable(currPos.x, currPos.y - 1))
+        positions.add(new PathNodePosition(currPos.x, currPos.y - 1));
+
+      if (currPos.x + 1 != map.getWidth() && currPos.y + 1 != map.getHeight() && map.isTraversable(currPos.x + 1, currPos.y + 1))
+        positions.add(new PathNodePosition(currPos.x + 1, currPos.y + 1));
+      if (currPos.x + 1 != map.getWidth() && currPos.y != 0 && map.isTraversable(currPos.x + 1, currPos.y - 1))
+        positions.add(new PathNodePosition(currPos.x + 1, currPos.y - 1));
+      if (currPos.x != 0 && currPos.y + 1 != map.getHeight() && map.isTraversable(currPos.x - 1, currPos.y + 1))
+        positions.add(new PathNodePosition(currPos.x - 1, currPos.y + 1));
+      if (currPos.x != 0 && currPos.y != 0 && map.isTraversable(currPos.x - 1, currPos.y - 1))
+        positions.add(new PathNodePosition(currPos.x - 1, currPos.y - 1));
+    }
+    return false;
   }
 }

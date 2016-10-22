@@ -164,22 +164,9 @@ public class AStarTest {
     expectedPositions.add(new PathNodePosition(6, 2));
     expectedPositions.add(new PathNodePosition(7, 2));
 
-    assertEquals("The path returned by findPath() is not the one expected (Diagonal movements not allowed)", expectedPositions, positions);
-
-    // 2 - Use diagonal movements
-    params1.setMap(map2);
-    params1.setNeighborsEnumerator(NeighborsEnumerator.ORTHO_DIAG_NEIGHBORS);
-    params1.setStartPos(new PathNodePosition(0, 0));
-    params1.setEndPos(new PathNodePosition(2, 2));
-    positions = AStar.findPath(params1);
-
-    expectedPositions.clear();
-    expectedPositions.add(new PathNodePosition(1, 1));
-    expectedPositions.add(new PathNodePosition(2, 2));
-
     assertEquals("The path returned by findPath() is not the one expected (Diagonal movements allowed)", expectedPositions, positions);
 
-    // 3 - Set unreachable position
+    // 2 - Set unreachable position
     params1.setMap(map1);
     params1.setStartPos(new PathNodePosition(0, 2));
     params1.setEndPos(new PathNodePosition(6, 0));
@@ -189,7 +176,7 @@ public class AStarTest {
 
     assertEquals("findPath() must returns empty array when unreachable position is given", expectedPositions, positions);
 
-    // 4 - Set start position on a wall (with a neighbor reachable)
+    // 3 - Set start position on a wall (with a neighbor reachable)
     params1.setStartPos(new PathNodePosition(0, 1));
     params1.setEndPos(new PathNodePosition(7, 2));
     positions = AStar.findPath(params1);
@@ -198,9 +185,9 @@ public class AStarTest {
 
     assertEquals("findPath() must returns empty array when a not traversable start position is given", expectedPositions, positions);
 
-    // 5 - Use soft diagonal movements
+    // 4 - Use diagonal movements
     params1.setMap(map3);
-    params1.setNeighborsEnumerator(NeighborsEnumerator.ORTHO_DIAG_SOFT_NEIGHBORS);
+    params1.setNeighborsEnumerator(NeighborsEnumerator.ORTHO_DIAG_NEIGHBORS);
     params1.setStartPos(new PathNodePosition(0, 0));
     params1.setEndPos(new PathNodePosition(7, 4));
     positions = AStar.findPath(params1);
@@ -217,7 +204,7 @@ public class AStarTest {
 
     assertEquals("The path returned by findPath() is not the one expected (Soft diagonal movements allowed)", expectedPositions, positions);
 
-    // 6 - Performance test
+    // 5 - Performance test, not reachable (use flood fill to detect)
     params1.setMap(map4);
     params1.setNeighborsEnumerator(NeighborsEnumerator.ORTHO_NEIGHBORS);
     params1.setHeuristic(DistanceCalculator.MANHATTAN_DISTANCE);
@@ -225,5 +212,4 @@ public class AStarTest {
     params1.setEndPos(new PathNodePosition(49, 49));
     AStar.findPath(params1);
   }
-
 }

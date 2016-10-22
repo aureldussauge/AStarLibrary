@@ -26,6 +26,11 @@ public class AStarParams {
   private NeighborsEnumerator neighborsEnumerator;
 
   /**
+   * Tell if we have to do a flood fill to check if a path exists before doing A*
+   */
+  private boolean mustCheckPosSameArea;
+
+  /**
    * The function used when estimating distance between a position and the end position
    */
   DistanceCalculator heuristic;
@@ -36,6 +41,7 @@ public class AStarParams {
     this.endPos = endPos;
     this.neighborsEnumerator = NeighborsEnumerator.ORTHO_NEIGHBORS;
     this.heuristic = DistanceCalculator.MANHATTAN_DISTANCE;
+    this.mustCheckPosSameArea = true;
   }
 
 
@@ -81,6 +87,15 @@ public class AStarParams {
 
   public AStarParams setHeuristic(DistanceCalculator heuristic) {
     this.heuristic = heuristic;
+    return this;
+  }
+
+  public boolean mustCheckPosSameArea() {
+    return mustCheckPosSameArea;
+  }
+
+  public AStarParams setMustCheckPosSameArea(boolean mustCheckPosSameArea) {
+    this.mustCheckPosSameArea = mustCheckPosSameArea;
     return this;
   }
 }

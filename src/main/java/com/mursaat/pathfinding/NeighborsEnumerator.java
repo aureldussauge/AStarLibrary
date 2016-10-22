@@ -50,40 +50,9 @@ public abstract class NeighborsEnumerator {
 
   /**
    * Returns the neighbors in these directions : N, S, E, W, NE, NO, SE, SO
-   */
-  public static final NeighborsEnumerator ORTHO_DIAG_NEIGHBORS = new NeighborsEnumerator() {
-    @Override
-    public List<PathNode> enumerateNeighbors(PathFinderMap map, PathNode node) {
-      ArrayList<PathNode> neighbors = new ArrayList<>(4);
-      PathNodePosition pos = node.pos;
-
-      if (pos.x != 0 && map.isTraversable(pos.x - 1, pos.y))
-        neighbors.add(new PathNode(new PathNodePosition(pos.x - 1, pos.y), node.cost + 1, 0));
-      if (pos.x != map.getWidth() - 1 && map.isTraversable(pos.x + 1, pos.y))
-        neighbors.add(new PathNode(new PathNodePosition(pos.x + 1, pos.y), node.cost + 1, 0));
-      if (pos.y != 0 && map.isTraversable(pos.x, pos.y - 1))
-        neighbors.add(new PathNode(new PathNodePosition(pos.x, pos.y - 1), node.cost + 1, 0));
-      if (pos.y != map.getHeight() - 1 && map.isTraversable(pos.x, pos.y + 1))
-        neighbors.add(new PathNode(new PathNodePosition(pos.x, pos.y + 1), node.cost + 1, 0));
-
-      if (pos.x != 0 && pos.y != 0 && map.isTraversable(pos.x - 1, pos.y - 1))
-        neighbors.add(new PathNode(new PathNodePosition(pos.x - 1, pos.y - 1), node.cost + SQRT_2, 0));
-      if (pos.x != 0 && pos.y != map.getHeight() - 1 && map.isTraversable(pos.x - 1, pos.y + 1))
-        neighbors.add(new PathNode(new PathNodePosition(pos.x - 1, pos.y + 1), node.cost + SQRT_2, 0));
-      if (pos.x != map.getWidth() - 1 && pos.y != 0 && map.isTraversable(pos.x + 1, pos.y - 1))
-        neighbors.add(new PathNode(new PathNodePosition(pos.x + 1, pos.y - 1), node.cost + SQRT_2, 0));
-      if (pos.x != map.getWidth() - 1 && pos.y != map.getHeight() - 1 && map.isTraversable(pos.x + 1, pos.y + 1))
-        neighbors.add(new PathNode(new PathNodePosition(pos.x + 1, pos.y + 1), node.cost + SQRT_2, 0));
-
-      return neighbors;
-    }
-  };
-
-  /**
-   * Returns the neighbors in these directions : N, S, E, W, NE, NO, SE, SO
    * The difference with ORTHOGONAL_DIAGONAL_NEIGHBORS is that this won't allows to pass through walls in diagonal
    */
-  public static final NeighborsEnumerator ORTHO_DIAG_SOFT_NEIGHBORS = new NeighborsEnumerator() {
+  public static final NeighborsEnumerator ORTHO_DIAG_NEIGHBORS = new NeighborsEnumerator() {
     @Override
     public List<PathNode> enumerateNeighbors(PathFinderMap map, PathNode node) {
       ArrayList<PathNode> neighbors = new ArrayList<>(4);
