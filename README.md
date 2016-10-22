@@ -6,9 +6,9 @@ This library allows to estimate shortest path on a grid, by using the A\* algori
 Latest release
 ---------------
 
-The most recent release is v0.1, released October 3, 2016
+The most recent release is v0.2, released October 22, 2016
 
-You can get the .jar here : https://github.com/Mursaat/AStarLibrary/releases/tag/v0.1
+You can get the .jar here : https://github.com/Mursaat/AStarLibrary/releases/tag/v0.2
 
 To add a dependency using Gradle:
 ```
@@ -64,7 +64,9 @@ MyMap map = new MyMap(26,11);
 PathNodePosition startPos = new PathNodePosition(1,3);
 PathNodePosition endPos = new PathNodePosition(8,6);
 AStarParams params = new AStarParams(map, startPos, endPos);
-params.setNeighborsEnumerator(NeighborsEnumerator.ORTHO_NEIGHBORS).setHeuristic(DistanceCalculator.MANHATTAN_DISTANCE);
+params.setNeighborsEnumerator(NeighborsEnumerator.ORTHO_NEIGHBORS).setHeuristic(DistanceCalculator.MANHATTAN_DISTANCE)
+// Perform a flood fill test to check if position is reachable ?
+params.setMustCheckPosSameArea(false);
 
 LinkedList<PathNodePosition> path = AStar.findPath(params);
 ```
