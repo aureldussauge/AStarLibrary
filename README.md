@@ -21,6 +21,11 @@ dependencies {
 }
 ```
 
+Latest release
+---------------
+
+* 0.1 - Add possibility to check by flood fill if the position is reachable before performing A*
+
 Getting started
 ---------------
 
