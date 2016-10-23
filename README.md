@@ -17,7 +17,7 @@ repositories {
 	maven { url "https://jitpack.io" }
 }
 dependencies {
-	compile 'com.github.mursaat:astarlibrary:v0.1'
+	compile 'com.github.mursaat:astarlibrary:v0.2'
 }
 ```
 
